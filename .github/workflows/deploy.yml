@@ -1,0 +1,32 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Define a branch que irá acionar o workflow
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install dependencies (if any)
+      run: echo "No dependencies to install for this static site."
+
+    - name: Build project (if any)
+      run: echo "No build step required for this static HTML/CSS/JS site."
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./teste-de-site # O diretório que contém os arquivos do seu site
+        # Se o seu site estiver na raiz do repositório, use publish_dir: ./
